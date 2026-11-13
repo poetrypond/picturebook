@@ -355,6 +355,90 @@ body{background:var(--bg) var(--paper-tex) repeat;background-size:320px 320px}
 .backupnudge{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;margin:4px 0 16px;border:2px solid var(--ink);border-radius:var(--r-card);background:var(--tag);font-size:14px;line-height:1.5}
 .backupnudge small{color:var(--ink);opacity:.75;font-size:12px}
 .backupnudge .btn{height:40px;flex:none;padding:0 14px}
+
+/* ===== 11월 수정: 오늘 만난 책 · 책장 · 오늘의 그림책 · 영수증 ===== */
+.scanTitle{font-size:22px !important;letter-spacing:-.5px}
+/* 표지 자르기 */
+.cropper{position:fixed;inset:0;z-index:90;background:#1f1d1a;display:flex;flex-direction:column;padding:calc(12px + env(safe-area-inset-top)) 0 calc(12px + env(safe-area-inset-bottom))}
+.crop-top{color:#fbf8f0;text-align:center;padding:6px 16px 10px;display:flex;flex-direction:column;gap:2px}
+.crop-top b{font-family:var(--display);font-weight:400;font-size:18px}
+.crop-top span{font-size:13px;opacity:.75}
+.crop-area{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.crop-stage{position:relative;touch-action:none;overflow:hidden}
+.crop-stage img{display:block;width:100%;height:100%;user-select:none;-webkit-user-drag:none;pointer-events:none}
+.crop-box{position:absolute;border:2px solid #fbf8f0;box-shadow:0 0 0 9999px rgba(20,18,16,.62);cursor:move;touch-action:none}
+.crop-box::before,.crop-box::after{content:"";position:absolute;background:rgba(251,248,240,.35)}
+.crop-box::before{left:33.3%;right:33.3%;top:0;bottom:0;border-left:1px solid rgba(251,248,240,.45);border-right:1px solid rgba(251,248,240,.45);background:none}
+.crop-box::after{top:33.3%;bottom:33.3%;left:0;right:0;border-top:1px solid rgba(251,248,240,.45);border-bottom:1px solid rgba(251,248,240,.45);background:none}
+.crop-box i{position:absolute;width:30px;height:30px;touch-action:none;z-index:2}
+.crop-box i::after{content:"";position:absolute;width:16px;height:16px;border:4px solid #f2df9e}
+.crop-box i[data-h="nw"]{left:-13px;top:-13px}.crop-box i[data-h="nw"]::after{left:9px;top:9px;border-right:0;border-bottom:0}
+.crop-box i[data-h="ne"]{right:-13px;top:-13px}.crop-box i[data-h="ne"]::after{right:9px;top:9px;border-left:0;border-bottom:0}
+.crop-box i[data-h="sw"]{left:-13px;bottom:-13px}.crop-box i[data-h="sw"]::after{left:9px;bottom:9px;border-right:0;border-top:0}
+.crop-box i[data-h="se"]{right:-13px;bottom:-13px}.crop-box i[data-h="se"]::after{right:9px;bottom:9px;border-left:0;border-top:0}
+.crop-bar{display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:8px;padding:12px 16px 0}
+.crop-bar .btn{height:48px}
+/* 책장: 테두리 없이, 선반 촘촘하게 */
+.bookcase{border:0 !important;background:transparent !important;padding:6px 4px 4px !important;border-radius:0}
+.rack{margin-bottom:12px !important}
+.rack{margin-bottom:8px !important}
+#v-case{padding-bottom:8px}
+.shelfbottom{margin:8px var(--pad) 28px;padding:var(--pad);border:2px solid var(--ink);border-radius:var(--r-card);background:var(--card)}
+.shelfbottom h3{font-size:17px;margin-bottom:6px}
+.shelfbottom p{margin:0 0 14px;font-size:13px;color:var(--muted);line-height:1.7}
+.shelfbottom p b{color:var(--ink);font-weight:600}
+.sb-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sb-actions .btn{height:46px;font-size:14px}
+/* 오늘의 그림책: 문장 모두 마롱체 */
+.caption{font-family:var(--display) !important;font-size:15px;letter-spacing:0}
+.tlabel{font-family:var(--display) !important;font-size:11px}
+#tNick{display:inline-block;min-width:3em}
+.savedsec{margin-top:10px;padding-top:18px;border-top:2px dashed rgba(31,29,26,.25)}
+.savedsec h3{font-size:17px;margin-bottom:12px}
+.savedsec .dmonth{margin-top:8px}
+/* 그림책 영수증 */
+.rcwrap{padding:0 var(--pad) 28px;display:flex;flex-direction:column;gap:16px}
+.rcchips{display:flex;gap:8px;flex-wrap:wrap}
+.rcchips button{height:36px;padding:0 14px;border-radius:var(--r-tag);border:2px solid var(--ink);background:var(--card);font-size:14px;color:var(--ink)}
+.rcchips button.on{background:var(--tag)}
+.rcpaper{align-self:center;width:100%;max-width:330px;filter:drop-shadow(3px 4px 0 rgba(31,29,26,.18))}
+.zig{height:10px;background-size:14px 10px;background-repeat:repeat-x}
+.zig.top{background-image:linear-gradient(135deg,transparent 50%,#fffdf8 50%),linear-gradient(225deg,transparent 50%,#fffdf8 50%);background-position:0 0,7px 0}
+.zig.bottom{background-image:linear-gradient(45deg,transparent 50%,#fffdf8 50%),linear-gradient(315deg,transparent 50%,#fffdf8 50%);background-position:0 0,7px 0;transform:rotate(180deg)}
+.rc{background:#fffdf8;padding:18px 20px 22px;font-family:var(--display);color:#26231f;font-variant-numeric:tabular-nums}
+.rc-shop{text-align:center;font-size:26px;letter-spacing:2px}
+.rc-sub{text-align:center;font-size:10.5px;letter-spacing:1px;color:#6b6457;margin-top:2px}
+.rc-meta{display:grid;grid-template-columns:auto 1fr;gap:3px 12px;margin-top:16px;font-size:12px}
+.rc-meta span{color:#6b6457}
+.rc-meta b{font-weight:400;text-align:right;word-break:keep-all}
+.rc-line{border-top:2px dashed #26231f;margin:12px 0;opacity:.75}
+.rc-line.thin{border-top-width:1px;margin:6px 0 8px;opacity:.5}
+.rc-row{display:grid;grid-template-columns:24px 1fr auto;gap:8px;font-size:13px;line-height:1.5;padding:3px 0;align-items:start}
+.rc-row .it{word-break:keep-all}
+.rc-row .it small{display:block;font-size:10.5px;color:#7a7266}
+.rc-row .no,.rc-row .dt{color:#6b6457;font-size:12px;padding-top:1px}
+.rc-th{font-size:11px;color:#6b6457;padding:0}
+.rc-th .it{color:#6b6457}
+.rc-empty{text-align:center;color:#7a7266;font-size:13px;padding:14px 0}
+.rc-sum{display:flex;justify-content:space-between;gap:12px;font-size:13px;padding:3px 0}
+.rc-sum span{color:#6b6457;flex:none}
+.rc-sum b{font-weight:400;text-align:right;word-break:keep-all}
+.rc-total{display:flex;justify-content:space-between;align-items:baseline;font-size:20px}
+.rc-total b{font-weight:400;font-size:24px}
+.rc-pay{text-align:right;font-size:12px;color:#3f7a35;margin-top:4px}
+.rc-barcode{display:flex;justify-content:center;align-items:stretch;gap:1px;height:46px;margin:20px 0 8px}
+.rc-barcode i{display:block;background:#26231f}
+.rc-thanks{text-align:center;font-size:11px;letter-spacing:1.5px;line-height:1.8;color:#4a4339}
+
+/* 시샘책방에 보내기 · 상단 바 */
+.scanbar{display:grid;grid-template-columns:1.35fr 1fr;gap:10px;padding:2px var(--pad) 0}
+.scanbar .btn{height:44px;font-size:14px;padding:0 8px;white-space:nowrap}
+.scanbar .btn svg{width:18px;height:18px;flex:none}
+.panel.cap{display:block !important;z-index:0}
+.sendov{position:fixed;inset:0;z-index:95;background:rgba(244,238,225,.96);display:flex;align-items:center;justify-content:center}
+.sendbox{display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;padding:28px 24px;border:2px solid var(--ink);border-radius:var(--r-card);background:var(--card);box-shadow:3px 3px 0 var(--ink)}
+.sendbox b{font-family:var(--display);font-weight:400;font-size:18px}
+.sendbox span{font-size:13px;color:var(--muted)}
 </style>
 </head>
 <body>
@@ -364,15 +448,22 @@ body{background:var(--bg) var(--paper-tex) repeat;background-size:320px 320px}
   <section class="panel on" id="p-scan">
     <div class="head">
       <div>
-        <h1>오늘 읽은 책</h1>
+        <h1 class="scanTitle">시샘책방에서 만난 책</h1>
         <div class="sub" id="scanDate"></div>
       </div>
       <div style="display:flex;gap:8px;align-items:center">
         <span class="pill" id="todayPill">오늘 0권</span>
-        <button class="iconbtn" data-open-settings aria-label="설정"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button>
       </div>
     </div>
 
+    <div class="scanbar">
+      <button class="btn primary" id="sendBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-8-8 18-2-8z"/></svg><span id="sendTxt">시샘책방에 보내기</span>
+      </button>
+      <button class="btn" id="backupBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18a4.5 4.5 0 0 1-.6-9 6 6 0 0 1 11.4 1.6A3.8 3.8 0 0 1 17.5 18z"/><path d="M12 11v6M9.5 13.5 12 11l2.5 2.5"/></svg>백업 · 설정
+      </button>
+    </div>
     <div class="cam" id="cam">
       <video id="video" playsinline muted autoplay></video>
       <div class="idle">
@@ -388,10 +479,7 @@ body{background:var(--bg) var(--paper-tex) repeat;background-size:320px 320px}
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2M7 8v8M10 8v8M13 8v8M17 8v8"/></svg>
         <span id="scanBtnTxt">바코드 스캔 시작</span>
       </button>
-      <button class="btn" id="photoScanBtn">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>사진으로 인식
-      </button>
-      <button class="btn" id="manualBtn">
+      <button class="btn full" id="manualBtn">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/></svg>직접 입력
       </button>
     </div>
@@ -406,24 +494,9 @@ body{background:var(--bg) var(--paper-tex) repeat;background-size:320px 320px}
         <h1>나만의 그림책장</h1>
         <div class="sub" id="shelfSub">0권의 그림책</div>
       </div>
-      <button class="iconbtn" data-open-settings aria-label="설정"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v12M7 10l5 5 5-5M4 20h16"/></svg></button>
-    </div>
-    <div class="seg" id="shelfSeg">
-      <button class="on" data-v="case">책장</button>
-      <button data-v="list">리스트</button>
-      <button data-v="search">검색</button>
+      <button class="iconbtn" id="shelfSaveBtn" aria-label="책장 이미지 저장"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v12M7 10l5 5 5-5M4 20h16"/></svg></button>
     </div>
     <div class="view on" id="v-case"></div>
-    <div class="view list" id="v-list"></div>
-    <div class="view search" id="v-search">
-      <input id="q" type="search" placeholder="제목, 작가, 날짜(예: 10월, 2026-10)로 찾기">
-      <div class="chips" id="groupChips">
-        <button class="on" data-g="date">날짜별</button>
-        <button data-g="title">제목별</button>
-        <button data-g="author">작가별</button>
-      </div>
-      <div id="searchOut"></div>
-    </div>
   </section>
 
   <!-- ================= TAB 3 ================= -->
@@ -438,25 +511,15 @@ body{background:var(--bg) var(--paper-tex) repeat;background-size:320px 320px}
       <article class="diary" id="tcard">
         <div class="scenewrap" id="scene"><canvas id="sceneCv" aria-label="소파 위에 쌓인 오늘의 그림책 그림"></canvas><div id="sceneTop"></div></div>
         <div class="caption">
-          <p class="cline"><span id="tDay"></span> / <span id="tPlace" class="edit" contenteditable="plaintext-only" spellcheck="false" data-ph="어디서"></span> / <span id="tCount"></span></p>
+          <p class="cline"><span id="tDay"></span> 시샘책방에서, <span id="tNick" class="edit" contenteditable="plaintext-only" spellcheck="false" data-ph="닉네임"></span></p>
           <p class="cline" id="tPickLine"></p>
-          <div id="memo" class="cline edit memo" contenteditable="plaintext-only" spellcheck="false" data-ph="오늘의 문장을 적어요"></div>
+          <div id="memo" class="cline edit memo" contenteditable="plaintext-only" spellcheck="false" data-ph="그 책이 좋았던 이유나, 나에게 남은 의미를 적어요"></div>
           <div class="cfoot">
             <label class="cdate"><span id="tDateTxt"></span><input type="date" id="tDate" aria-label="읽은 날짜 바꾸기"></label>
             <svg class="scribble" viewBox="0 0 64 22" aria-hidden="true"><path d="M3 15c3-5 5-5 6 0s3 5 5 0 3-5 5 0 3 5 5 0 2-4 4-1"/><path d="M48 17c-5-3-8-6-6-9 1.6-2.4 4.6-1.6 6 1 1.4-2.6 4.4-3.4 6-1 2 3-1 6-6 9z"/></svg>
           </div>
         </div>
       </article>
-      <div class="stylerow" id="styleSeg" role="group" aria-label="그림 스타일">
-        <span>그림 스타일</span>
-        <button data-s="pencil">색연필</button><button data-s="calm">담백한 선</button><button data-s="round">동글한 선</button>
-      </div>
-      <div class="bgrow">
-        <button class="btn ghost" id="bgBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>배경 사진 바꾸기</button>
-        <button class="btn ghost hidden" id="bgReset">기본 배경</button>
-      </div>
-      <p class="hintline hidden" id="dragHint">찍은 사진이 색연필 그림으로 바뀌었어요. 그림 속 책 더미를 끌어서 원하는 곳에 놓아 보세요.</p>
-
       <div class="pick" id="pickBox">
         <h3>오늘의 한 권 고르기 ★</h3>
         <p>가장 좋았던 책을 누르면 맨 위에 표지가 보이게 세워져요.</p>
@@ -465,30 +528,42 @@ body{background:var(--bg) var(--paper-tex) repeat;background-size:320px 320px}
 
       <div class="saverow">
         <button class="btn primary" id="diaryBtn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h11"/></svg>일기장에 저장
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h11"/></svg>저장하기
         </button>
         <button class="btn" id="saveImgBtn">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 3v12M7 10l5 5 5-5M4 20h16"/></svg>사진으로 저장
         </button>
       </div>
       <p class="hintline" id="diarySaved"></p>
+      <section class="savedsec">
+        <h3>저장한 오늘의 그림책</h3>
+        <div id="diaryList"></div>
+      </section>
     </div>
   </section>
 
   <!-- ================= TAB 4 ================= -->
-  <section class="panel" id="p-diary">
+  <section class="panel" id="p-receipt">
     <div class="head">
       <div>
-        <h1>그림책 일기장</h1>
-        <div class="sub" id="diarySub"></div>
+        <h1>그림책 영수증</h1>
+        <div class="sub">시샘책방에서 만난 그림책을 영수증 한 장으로</div>
       </div>
     </div>
-    <div class="diarywrap" id="diaryList"></div>
+    <div class="rcwrap">
+      <div class="rcchips" id="rcChips" role="group" aria-label="기간">
+        <button data-p="today" class="on">오늘</button><button data-p="month">이번 달</button><button data-p="year">올해</button><button data-p="all">전체</button>
+      </div>
+      <div class="rcpaper" id="receipt"></div>
+      <button class="btn primary" id="rcSave" style="width:100%">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 3v12M7 10l5 5 5-5M4 20h16"/></svg>영수증 이미지로 저장
+      </button>
+    </div>
   </section>
 
   <nav class="tabbar">
     <button class="on" data-tab="scan">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2M7 8v8M10 8v8M13 8v8M17 8v8"/></svg>오늘 읽은 책
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2M7 8v8M10 8v8M13 8v8M17 8v8"/></svg>오늘 만난 책
     </button>
     <button data-tab="shelf">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 21h18M5 21V4h3v17M10 21V7h3v14M15.5 21l-1.5-12 3-.5 2 12.5"/></svg>나만의 그림책장
@@ -496,8 +571,8 @@ body{background:var(--bg) var(--paper-tex) repeat;background-size:320px 320px}
     <button data-tab="table">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 14h20M5 14v7M19 14v7M6 11h12M7 8h10M8 4h8v4H8z"/></svg>오늘의 그림책
     </button>
-    <button data-tab="diary">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h11"/><path d="M12 7.6c-.9-1.2-3-.8-3 .9 0 1.3 1.6 2.3 3 3.3 1.4-1 3-2 3-3.3 0-1.7-2.1-2.1-3-.9z"/></svg>그림책 일기장
+    <button data-tab="receipt">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12v18l-2-1.4-2 1.4-2-1.4-2 1.4-2-1.4L6 21z"/><path d="M9 8h6M9 12h6M9 16h3"/></svg>그림책 영수증
     </button>
   </nav>
 </div>
@@ -686,7 +761,6 @@ function stopScan(){
   cam.classList.remove('live'); $('#scanBtnTxt').textContent = '바코드 스캔 시작';
 }
 $('#scanBtn').onclick = () => scanning ? stopScan() : startScan();
-$('#photoScanBtn').onclick = () => { stopScan(); $('#photoScanInput').click(); };
 $('#photoScanInput').onchange = async (e) => {
   const f = e.target.files[0]; e.target.value = ''; if (!f) return;
   if (!window.ZXing){ toast('스캐너를 불러오지 못했어요'); return; }
@@ -798,9 +872,71 @@ let coverCb = null;
 function pickCover(cb){ coverCb = cb; $('#coverInput').click(); }
 $('#coverInput').onchange = async e => {
   const f = e.target.files[0]; e.target.value = ''; if (!f || !coverCb) return;
-  try{ const t = await fileThumb(f); coverCb(t); }catch(err){ toast('사진을 불러오지 못했어요'); }
+  const cb = coverCb;
+  try{
+    const url = URL.createObjectURL(f); const img = await loadImg(url, false); URL.revokeObjectURL(url);
+    const cut = await openCropper(img);
+    if (cut === 'retake'){ coverCb = cb; $('#coverInput').click(); return; }
+    if (!cut){ coverCb = null; return; }
+    const sm = Math.min(1, 440 / cut.width), c = document.createElement('canvas');
+    c.width = Math.round(cut.width*sm); c.height = Math.round(cut.height*sm);
+    const x = c.getContext('2d'); x.drawImage(cut, 0, 0, c.width, c.height);
+    cb({ data: c.toDataURL('image/jpeg', .82), color: avgColor(x, c.width, c.height) });
+  }catch(err){ toast('사진을 불러오지 못했어요'); }
   coverCb = null;
 };
+// 찍은 표지 사진에서 책 부분만 고르기: 네 모서리를 끌어 크기·모양 조절, 가운데를 끌어 이동
+function openCropper(img){
+  return new Promise(resolve => {
+    const ov = document.createElement('div'); ov.className = 'cropper';
+    ov.innerHTML = `<div class="crop-top"><b>책 표지만 남겨 주세요</b><span>모서리를 끌어 크기를, 가운데를 끌어 위치를 맞춰요</span></div>
+      <div class="crop-area"><div class="crop-stage"><img alt=""><div class="crop-box"><i data-h="nw"></i><i data-h="ne"></i><i data-h="sw"></i><i data-h="se"></i></div></div></div>
+      <div class="crop-bar"><button class="btn" data-a="retake">다시 찍기</button><button class="btn" data-a="cancel">취소</button><button class="btn primary" data-a="ok">완료</button></div>`;
+    document.body.appendChild(ov);
+    const stage = ov.querySelector('.crop-stage'), im = stage.querySelector('img'), box = ov.querySelector('.crop-box'), area = ov.querySelector('.crop-area');
+    im.src = img.src;
+    let W, H, r;
+    const layout = () => {
+      const aw = area.clientWidth - 24, ah = area.clientHeight - 24, k = Math.min(aw / img.naturalWidth, ah / img.naturalHeight);
+      W = Math.round(img.naturalWidth*k); H = Math.round(img.naturalHeight*k);
+      stage.style.width = W+'px'; stage.style.height = H+'px';
+      if (!r) r = { x:W*.08, y:H*.08, w:W*.84, h:H*.84 };
+      draw();
+    };
+    const draw = () => { box.style.left = r.x+'px'; box.style.top = r.y+'px'; box.style.width = r.w+'px'; box.style.height = r.h+'px'; };
+    let drag = null; const MIN = 40;
+    stage.addEventListener('pointerdown', e => {
+      const hdl = e.target.dataset && e.target.dataset.h;
+      if (!hdl && !e.target.closest('.crop-box')) return;
+      drag = { h: hdl || 'move', x:e.clientX, y:e.clientY, r:{...r} }; stage.setPointerCapture(e.pointerId); e.preventDefault();
+    });
+    stage.addEventListener('pointermove', e => {
+      if (!drag) return; const dx = e.clientX - drag.x, dy = e.clientY - drag.y, o = drag.r; let n = {...o};
+      if (drag.h === 'move'){ n.x = Math.min(W-o.w, Math.max(0, o.x+dx)); n.y = Math.min(H-o.h, Math.max(0, o.y+dy)); }
+      else {
+        if (drag.h.includes('w')){ const nx = Math.min(o.x+o.w-MIN, Math.max(0, o.x+dx)); n.w = o.w + (o.x-nx); n.x = nx; }
+        if (drag.h.includes('e')){ n.w = Math.min(W-o.x, Math.max(MIN, o.w+dx)); }
+        if (drag.h.includes('n')){ const ny = Math.min(o.y+o.h-MIN, Math.max(0, o.y+dy)); n.h = o.h + (o.y-ny); n.y = ny; }
+        if (drag.h.includes('s')){ n.h = Math.min(H-o.y, Math.max(MIN, o.h+dy)); }
+      }
+      r = n; draw();
+    });
+    const end = () => { drag = null; };
+    stage.addEventListener('pointerup', end); stage.addEventListener('pointercancel', end);
+    const done = v => { window.removeEventListener('resize', layout); ov.remove(); resolve(v); };
+    ov.querySelector('.crop-bar').onclick = e => {
+      const a = e.target.closest('button'); if (!a) return;
+      if (a.dataset.a === 'ok'){
+        const k = img.naturalWidth / W, c = document.createElement('canvas');
+        c.width = Math.max(1, Math.round(r.w*k)); c.height = Math.max(1, Math.round(r.h*k));
+        c.getContext('2d').drawImage(img, r.x*k, r.y*k, r.w*k, r.h*k, 0, 0, c.width, c.height);
+        done(c);
+      } else done(a.dataset.a === 'retake' ? 'retake' : null);
+    };
+    window.addEventListener('resize', layout);
+    requestAnimationFrame(layout);
+  });
+}
 
 /* ================= book detail sheet ================= */
 function openBook(id){
@@ -850,6 +986,8 @@ function renderScan(){
   const list = books.filter(b => b.date === today).sort((a,b) => a.createdAt - b.createdAt);
   $('#todayPill').textContent = `오늘 ${list.length}권`;
   drawScanArt();
+  const sent = dayData(today).sentAt;
+  $('#sendTxt').textContent = sent ? `오늘 보냄 ✓ ${new Date(sent).toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'})}` : '시샘책방에 보내기';
   $('#todayStrip').innerHTML = list.length
     ? `<span class="lbl">오늘</span>` + list.map(b => `<button class="mini" data-book="${b.id}">${coverHTML(b)}</button>`).join('')
     : `<span class="empty">오늘 읽은 그림책을 찍으면 여기에 모여요 📚</span>`;
@@ -1095,14 +1233,16 @@ function renderShelf(){
   // 소품이 있는 줄은 2권, 빈 줄은 3권
   const capOf = r => SHELF_DECOR[r % SHELF_DECOR.length].length ? 2 : 3;
   let rows = 0; for (let n = 0; n < list.length || rows < 4; rows++) n += capOf(rows);
+  // 화면 높이에 맞춰 책 크기를 정해, 선반 4줄이 한 화면에 들어오게
+  const maxH = Math.round(Math.max(70, Math.min(118, (window.innerHeight - 150) / 4 - 36)));
   let h = `<div class="bookcase">`, idx = 0;
   for (let r=0; r<rows; r++){
     const decos = SHELF_DECOR[r % SHELF_DECOR.length], per = capOf(r);
     const starts = decos.filter(d => d[1]==='start'), ends = decos.filter(d => d[1]==='end');
-    h += `<div class="rack"><div class="books">` + starts.map(([n]) => decoHTML(n, false, 4)).join('');
+    h += `<div class="rack"><div class="books" style="min-height:${maxH}px">` + starts.map(([n]) => decoHTML(n, false, 4)).join('');
     for (let i=0; i<per; i++){
       const b = list[idx]; if (!b) break; idx++;
-      const k = hash(b.id), ht = 112 + (k % 26), ml = (i===0 && !starts.length ? 4 : 10) + (k >> 6) % 10;
+      const k = hash(b.id), ht = maxH - 16 + (k % 16), ml = (i===0 && !starts.length ? 4 : 10) + (k >> 6) % 10;
       const inner = b.cover ? `<img src="${esc(b.cover)}" alt="${esc(b.title)}" loading="lazy" referrerpolicy="no-referrer" style="max-height:${ht}px">`
         : (() => { const c = bookColor(b), w = Math.round(ht * (0.72 + ((k >> 4) % 30) / 100)); return `<div class="nocover" style="height:${ht}px;width:${w}px;max-width:100%;background:${c};color:${textOn(c)}">${esc(b.title)}</div>`; })();
       h += `<button class="book" data-book="${b.id}" style="margin-left:${ml}px">${inner}</button>`;
@@ -1110,12 +1250,41 @@ function renderShelf(){
     h += ends.map(([n],j) => decoHTML(n, j===0, 6)).join('') + `</div><canvas class="ledge ledgecv"></canvas></div>`;
   }
   h += `</div>`;
-  $('#v-case').innerHTML = (list.length ? '' : `<div class="emptybox">아직 꽂힌 그림책이 없어요.<br>‘오늘 읽은 책’에서 바코드를 찍어 보세요.</div>`) + h;
+  $('#v-case').innerHTML = (list.length ? '' : `<div class="emptybox">아직 꽂힌 그림책이 없어요.<br>‘오늘 만난 책’에서 바코드를 찍어 보세요.</div>`) + h;
   drawDecos($('#v-case')); drawLedges($('#v-case'));
-  // list
-  $('#v-list').innerHTML = list.length ? list.map(itemHTML).join('') : `<div class="emptybox">기록된 그림책이 없어요.</div>`;
-  renderSearch();
 }
+function renderShelfBottom(){
+  $('#shelfBottom').innerHTML = `<h3>백업 · 설정</h3>
+    <p>기록은 이 휴대폰에만 저장돼요. 가끔 구글 드라이브에 백업해 두면 휴대폰을 바꿔도 되살릴 수 있어요.<br><b>${backupAgo()}</b></p>
+    <div class="sb-actions">
+      <button class="btn primary" id="sbExport">구글 드라이브에 백업</button>
+      <button class="btn" id="sbImport">백업 불러오기</button>
+      <button class="btn" id="sbInstall">홈 화면에 추가하는 방법</button>
+      <button class="btn" id="sbMore">설정 더 보기</button>
+    </div>`;
+  $('#sbExport').onclick = () => shareBackup();
+  $('#sbImport').onclick = () => $('#importInput').click();
+  $('#sbInstall').onclick = () => showInstallGuide(true);
+  $('#sbMore').onclick = openSettings;
+}
+// 책장 그림을 이미지로 저장
+$('#shelfSaveBtn').onclick = async () => {
+  const el = $('#v-case .bookcase'); if (!el){ toast('아직 책장이 비어 있어요'); return; }
+  if (!window.html2canvas){ toast('이미지 도구를 불러오지 못했어요. 인터넷 연결을 확인해 주세요'); return; }
+  toast('책장 이미지를 만드는 중…');
+  try{
+    const shoot = (safe) => html2canvas(el, { scale:2, useCORS:true, backgroundColor:'#f4eee1',
+      onclone: doc => { if (safe) doc.querySelectorAll('.bookcase img').forEach(img => {
+        if (img.src.startsWith('data:')) return;
+        const d = doc.createElement('div'); d.className = 'nocover';
+        d.style.cssText = `width:${img.offsetWidth}px;height:${img.offsetHeight || 100}px;background:#b98a5c`;
+        d.textContent = img.alt; img.replaceWith(d); }); } });
+    let canvas = await shoot(false);
+    try{ canvas.toDataURL(); }catch(e){ canvas = await shoot(true); }
+    const png = await new Promise(r => canvas.toBlob(r, 'image/png'));
+    await downloadBlob(png, `나만의그림책장_${todayStr()}.png`);
+  }catch(err){ toast('이미지를 만들지 못했어요'); }
+};
 function itemHTML(b){
   return `<button class="item" data-book="${b.id}">
     <div class="th">${coverHTML(b)}</div>
@@ -1157,19 +1326,6 @@ function renderSearch(){
     : keys.map(k => `<div class="group"><h3>${esc(group === 'date' ? fmtDate(k, true) : k)} <small>${groups.get(k).length}권</small></h3>
         <div class="tiles">${groups.get(k).map(b => `<button class="tile" data-book="${b.id}">${coverHTML(b)}<div class="tn">${esc(b.title)}</div></button>`).join('')}</div></div>`).join('');
 }
-$('#shelfSeg').onclick = e => {
-  const b = e.target.closest('button'); if (!b) return;
-  shelfView = b.dataset.v;
-  document.querySelectorAll('#shelfSeg button').forEach(x => x.classList.toggle('on', x === b));
-  document.querySelectorAll('#p-shelf .view').forEach(v => v.classList.toggle('on', v.id === 'v-' + shelfView));
-};
-$('#q').oninput = renderSearch;
-$('#groupChips').onclick = e => {
-  const b = e.target.closest('button'); if (!b) return; group = b.dataset.g;
-  document.querySelectorAll('#groupChips button').forEach(x => x.classList.toggle('on', x === b));
-  renderSearch();
-};
-
 /* ================= tab 3: 소파 위 그림일기 ================= */
 let tableDate = todayStr();
 function dayData(d){ return days[d] || (days[d] = { memo:'', fav:null, place:'', weather:'' }); }
@@ -1602,16 +1758,13 @@ function renderTable(){
   $('#tDate').value = tableDate;
   $('#tDateTxt').textContent = tableDate.replaceAll('-','.');
   const [yy,mm,dz] = tableDate.split('-').map(Number);
-  $('#tDay').textContent = ['sunday','monday','tuesday','wednesday','thursday','friday','saturday'][new Date(yy,mm-1,dz).getDay()];
-  if (document.activeElement !== $('#tPlace')) $('#tPlace').textContent = dd.place || '';
+  $('#tDay').textContent = WEEK[new Date(yy,mm-1,dz).getDay()] + '요일';
+  if (document.activeElement !== $('#tNick')) $('#tNick').textContent = settings.nickname || '';
   if (document.activeElement !== $('#memo')) $('#memo').textContent = dd.memo || '';
   const list = books.filter(b => b.date === tableDate).sort((a,b) => a.createdAt - b.createdAt);
-  $('#tCount').textContent = list.length === 1 ? '1 picture book' : `${list.length} picture books`;
   const favB = list.find(b => b.id === dd.fav);
   $('#tPickLine').textContent = favB ? `with 『${favB.title}』` : '';
-  $('#bgReset').classList.toggle('hidden', dd.bg !== 'custom');
-  $('#dragHint').classList.toggle('hidden', dd.bg !== 'custom' || !list.length);
-  $('#diarySaved').textContent = dd.savedAt ? `일기장에 저장됨 · ${new Date(dd.savedAt).toLocaleString('ko-KR',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'})}` : '';
+  $('#diarySaved').textContent = dd.savedAt ? `저장됨 · ${new Date(dd.savedAt).toLocaleString('ko-KR',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'})}` : '';
 
   const pick = $('#pickBox');
   if (!list.length) pick.classList.add('hidden');
@@ -1619,7 +1772,6 @@ function renderTable(){
     pick.classList.remove('hidden');
     $('#pickTiles').innerHTML = list.map(b => `<button class="tile ${b.id === dd.fav ? 'fav' : ''}" data-fav="${b.id}">${coverHTML(b)}<span class="fs">★</span><div class="tn">${esc(b.title)}</div></button>`).join('');
   }
-  if (dd.bg === 'custom' && bgCache.date !== tableDate){ loadBg(tableDate).then(() => drawScene()); }
   drawScene();
 }
 function drawScene(){
@@ -1632,8 +1784,8 @@ function drawScene(){
   if (cv.width !== Math.round(W*r)){ cv.width = Math.round(W*r); cv.height = Math.round(H*r); }
   const x = cv.getContext('2d'), s = W / 320; x.setTransform(r*s,0,0,r*s,0,0); x.clearRect(0,0,320,340);
   const R = rng(hash(tableDate) || 1);
-  const custom = dd.bg === 'custom' && bgCache.date === tableDate && bgCache.img;
-  const style = settings.sceneStyle || 'calm', flat = !custom && style !== 'pencil';
+  const custom = false;
+  const style = 'calm', flat = !custom && style !== 'pencil';
   let cx = 141, baseY = 250;
   if (custom){
     x.drawImage(bgCache.img, 0, 0, 320, 340);
@@ -1653,8 +1805,6 @@ function drawScene(){
   else if (!custom && style === 'round') drawRoundCat(x, R);
   else if (!custom){ drawPlushCat(x, R); drawLampAndGlow(x, R, false); }
   if (!flat) filmFinish(x, R);
-  document.querySelectorAll('#styleSeg button').forEach(b => b.classList.toggle('on', b.dataset.s === style));
-  $('#styleSeg').classList.toggle('dim', !!custom);
 
   const layer = $('#sceneTop'); let h = '';
   if (top){
@@ -1699,39 +1849,15 @@ document.addEventListener('click', e => {
 });
 $('#tDate').onchange = e => { if (e.target.value){ tableDate = e.target.value; renderTable(); } };
 const plain = el => (el.innerText || '').replace(/ /g,' ').replace(/\n$/,'');
-for (const [id, key] of [['#tPlace','place'], ['#memo','memo']]){
+for (const [id, key] of [['#tNick','nickname'], ['#memo','memo']]){
   const el = $(id);
-  el.addEventListener('input', () => { dayData(tableDate)[key] = plain(el); save(); if (!el.textContent.trim()) el.innerHTML = ''; });
+  el.addEventListener('input', () => { if (key === 'nickname') settings.nickname = plain(el).trim(); else dayData(tableDate)[key] = plain(el); save(); if (!el.textContent.trim()) el.innerHTML = ''; });
   el.addEventListener('paste', e => { e.preventDefault(); const t = (e.clipboardData || window.clipboardData).getData('text'); document.execCommand('insertText', false, t); });
 }
-$('#tPlace').addEventListener('keydown', e => { if (e.key === 'Enter'){ e.preventDefault(); e.target.blur(); } });
+$('#tNick').addEventListener('keydown', e => { if (e.key === 'Enter'){ e.preventDefault(); e.target.blur(); } });
 let resizeT; window.addEventListener('resize', () => { clearTimeout(resizeT); resizeT = setTimeout(() => { if ($('#scene').clientWidth !== sceneW) drawScene(); drawScanArt(); renderShelf(); }, 200); });
 if (document.fonts && document.fonts.load) document.fonts.load('12px MarongRound').then(() => drawScene()).catch(()=>{});
 
-// 배경 사진 바꾸기
-$('#styleSeg').onclick = e => {
-  const b = e.target.closest('button'); if (!b) return;
-  settings.sceneStyle = b.dataset.s; save(); drawScene();
-  if (dayData(tableDate).bg === 'custom') toast('기본 배경에서 이 스타일로 그려져요');
-};
-$('#bgBtn').onclick = () => $('#bgInput').click();
-$('#bgInput').onchange = async e => {
-  const f = e.target.files[0]; e.target.value = ''; if (!f) return;
-  toast('사진을 색연필 그림으로 바꾸는 중…');
-  try{
-    await new Promise(r => setTimeout(r, 30));
-    const blob = await photoToPencil(f);
-    await idb.set('bg:' + tableDate, blob);
-    const dd = dayData(tableDate); dd.bg = 'custom'; dd.sx = .5; dd.sy = .86; save();
-    bgCache = { date:null, img:null }; await loadBg(tableDate); renderTable();
-    toast('배경을 바꿨어요. 책 더미를 끌어서 옮길 수 있어요');
-  }catch(err){ toast('사진을 바꾸지 못했어요. 다른 사진으로 해 보세요'); }
-};
-$('#bgReset').onclick = async () => {
-  const dd = dayData(tableDate); dd.bg = 'default'; save();
-  try{ await idb.del('bg:' + tableDate); }catch(e){}
-  bgCache = { date:null, img:null }; renderTable(); toast('기본 배경으로 돌아왔어요');
-};
 // 내 사진 배경일 때 책 더미 끌어서 옮기기
 (function enableDrag(){
   const sc = $('#scene'); let moved = false, raf = 0;
@@ -1792,8 +1918,8 @@ async function downloadBlob(blob, name){
   toast('사진을 저장했어요');
 }
 $('#diaryBtn').onclick = async () => {
-  toast('일기장에 저장하는 중…');
-  try{ await saveToDiary(await captureDiary()); renderTable(); toast('그림책 일기장에 저장했어요'); }
+  toast('저장하는 중…');
+  try{ await saveToDiary(await captureDiary()); renderTable(); toast('저장했어요 · 아래 목록에 모였어요'); }
   catch(err){ toast(err.message === 'nolib' ? '이미지 도구를 불러오지 못했어요. 인터넷 연결을 확인해 주세요' : '저장하지 못했어요'); }
 };
 $('#saveImgBtn').onclick = async () => {
@@ -1814,12 +1940,10 @@ async function diaryThumb(date){
 }
 async function renderDiary(){
   const dates = Object.keys(days).filter(d => days[d].savedAt).sort((a,b) => b.localeCompare(a));
-  $('#diarySub').textContent = dates.length ? `${dates.length}개의 날을 기록했어요` : '오늘의 그림책에서 저장한 날이 모여요';
   const out = $('#diaryList');
-  const stale = !settings.lastBackup || Date.now() - settings.lastBackup > 7*86400000;
-  const nudge = (books.length && stale) ? `<div class="backupnudge"><span>${backupAgo()}<br><small>구글 드라이브에 백업해 두면 휴대폰을 바꿔도 남아요</small></span><button class="btn" id="nudgeBtn">백업하기</button></div>` : '';
+  const nudge = '';
   if (!dates.length){
-    out.innerHTML = nudge + `<div class="emptybox">아직 저장한 날이 없어요.<br>‘오늘의 그림책’에서 <b>일기장에 저장</b>을 눌러 보세요.</div>`;
+    out.innerHTML = nudge + `<div class="emptybox">아직 저장한 날이 없어요.<br>위의 <b>저장하기</b>를 누르면 날짜별로 여기에 모여요.</div>`;
     const nb0 = $('#nudgeBtn'); if (nb0) nb0.onclick = () => shareBackup();
     return;
   }
@@ -1852,15 +1976,15 @@ document.addEventListener('click', async e => {
       <button class="btn" id="dOpen">이 날 다시 꾸미기</button>
       <button class="btn primary" id="dSave">사진으로 저장</button>
     </div>
-    <button class="danger" id="dDel">일기장에서 지우기</button>`;
-  $('#dOpen').onclick = () => { closeBook(); tableDate = d; goTab('table'); };
+    <button class="danger" id="dDel">저장한 기록 지우기</button>`;
+  $('#dOpen').onclick = () => { closeBook(); tableDate = d; goTab('table'); $('#p-table').scrollTop = 0; };
   $('#dSave').onclick = async () => { const b = await idb.get('diary:' + d); if (b) downloadBlob(b, `오늘의그림책_${d}.jpg`); };
   const del = $('#dDel');
   del.onclick = async () => {
     if (!del.classList.contains('armed')){ del.classList.add('armed'); del.textContent = '한 번 더 누르면 지워져요'; return; }
     try{ await idb.del('diary:' + d); }catch(_){}
     if (diaryUrls.has(d)){ URL.revokeObjectURL(diaryUrls.get(d)); diaryUrls.delete(d); }
-    delete dd.savedAt; delete dd.savedTitles; save(); closeBook(); renderDiary(); renderTable(); toast('일기장에서 지웠어요');
+    delete dd.savedAt; delete dd.savedTitles; save(); closeBook(); renderDiary(); renderTable(); toast('지웠어요');
   };
 });
 
@@ -1869,7 +1993,7 @@ function openSettings(){
   const s = $('#setSheet'); $('#setScrim').classList.add('on');
   let used = 0; try{ for (const k of Object.values(LS)) used += (localStorage.getItem(k) || '').length; }catch(e){}
   s.innerHTML = `<div class="grip"></div><h2>백업 · 설정</h2>
-    <div class="setrow">이 기록(일기장 사진 포함)은 휴대폰 브라우저에 저장돼요 (사용 중 약 ${(used/1024/1024*2).toFixed(1)}MB / 보통 5MB).<small>브라우저 데이터를 지우거나 주소가 바뀌면 사라질 수 있으니, 가끔 백업 파일로 저장해 두세요.</small></div>
+    <div class="setrow">이 기록(저장한 그림 포함)은 휴대폰 브라우저에 저장돼요 (사용 중 약 ${(used/1024/1024*2).toFixed(1)}MB / 보통 5MB).<small>브라우저 데이터를 지우거나 주소가 바뀌면 사라질 수 있으니, 가끔 백업 파일로 저장해 두세요.</small></div>
     <div class="actions" style="margin-top:12px">
       <button class="btn primary" id="sExport">구글 드라이브에 백업</button>
       <button class="btn" id="sImport">백업 불러오기</button>
@@ -1966,31 +2090,44 @@ function drawLedges(root){
   });
 }
 
-// 첫 화면 그림: 바코드가 보이는 그림책 + 옆에서 지켜보는 검은 고양이
+// 첫 화면 그림: 지붕을 얹은 그림책 집 + 옆에서 지켜보는 검은 고양이
 function drawScanArt(){
   const c = $('#scanArt'); if (!c || !c.clientWidth) return;
   const [x,w,h] = setupCanvas(c), R = rng(7);
-  const s = Math.min(w/300, h/220); x.translate((w-300*s)/2, (h-220*s)/2); x.scale(s,s);
-  // 바닥선
-  brushPts(x, R, freeShape(R, jitter(R, lerpPts([30,206],[270,206],10), 1)), 2.6);
-  // 비스듬히 선 그림책(뒤표지)
-  x.save(); x.translate(132,204); x.rotate(-.07);
-  const book = rrPts(-62,-170,124,170,3);
+  const s = Math.min(w/300, h/290); x.translate((w-300*s)/2, (h-290*s)/2); x.scale(s,s);
+  const G = 270; // 바닥선
+  brushPts(x, R, freeShape(R, jitter(R, lerpPts([24,G+2],[276,G+2],10), 1)), 2.6);
+  x.save(); x.translate(132,G); x.rotate(-.04);
+  // 책(집 몸통)
+  const book = rrPts(-62,-160,124,160,3);
   fillPts(x, book, POINT, 6, 4, .95);
   fillPts(x, book, '#fbf8f0');
   brushPts(x, R, freeShape(R, jitter(R, book, 1)), 3);
-  brushPts(x, R, jitter(R, lerpPts([-50,-170],[-50,0],8), .6), 1.6);   // 책등 접힘선
-  // 바코드
-  fillPts(x, rrPts(-26,-74,64,44,2), '#ffffff');
-  brushPts(x, R, jitter(R, rrPts(-26,-74,64,44,2), .5), 1.6);
-  let bx = -20; while (bx < 32){ const bw = R()<.5 ? 1.6 : 3.2; x.fillStyle = INK; x.fillRect(bx, -68, bw, 28 + (R()<.2 ? 4 : 0)); bx += bw + 1.6 + R()*1.8; }
-  // 앞표지 쪽 작은 그림: 동그라미 해
-  brushPts(x, R, freeShape(R, jitter(R, ellPts(12,-132,12,12,16), .6)), 2);
+  brushPts(x, R, jitter(R, lerpPts([-50,-160],[-50,0],8), .6), 1.6);   // 책등 접힘선
+  // 굴뚝
+  const chim = [[30,-196],[30,-222],[48,-222],[48,-182]];
+  fillPts(x, [[30,-180],[30,-222],[48,-222],[48,-168]], '#fbf8f0');
+  brushPts(x, R, jitter(R, chim, .6), 2.4);
+  for (const [a,b2] of [[39,-232],[44,-246]]) brushPts(x, R, freeShape(R, jitter(R, ellPts(a,b2,4+(b2<-240?2:0),3,10), .4)), 1.2);
+  // 지붕
+  const roof = [[-84,-152],[0,-226],[84,-152],[-84,-152]];
+  fillPts(x, jitter(R, roof, 1.2), '#f2df9e', 5, 4, 1);
+  fillPts(x, roof, '#f2df9e');
+  brushPts(x, R, freeShape(R, jitter(R, roof, 1.2)), 3.2);
+  for (const t of [.35,.6]) brushPts(x, R, jitter(R, [[-84*(1-t)+0*t, -152*(1-t)-226*t+10],[84*(1-t), -152*(1-t)-226*t+10]], .8), 1.1);
+  // 동그란 창
+  fillPts(x, ellPts(0,-120,13,13,18), '#fbf8f0');
+  brushPts(x, R, freeShape(R, jitter(R, ellPts(0,-120,13,13,18), .6)), 2);
+  brushPts(x, R, [[0,-132],[0,-108]], 1.1); brushPts(x, R, [[-12,-120],[12,-120]], 1.1);
+  // 바코드 = 문
+  fillPts(x, rrPts(-24,-70,60,44,2), '#ffffff');
+  brushPts(x, R, jitter(R, rrPts(-24,-70,60,44,2), .5), 1.6);
+  let bx = -18; while (bx < 30){ const bw = R()<.5 ? 1.6 : 3.2; x.fillStyle = INK; x.fillRect(bx, -64, bw, 28 + (R()<.2 ? 4 : 0)); bx += bw + 1.6 + R()*1.8; }
   x.restore();
-  // 검은 고양이 (기존 붓 고양이를 옆에 앉힘)
-  x.save(); x.translate(-62,-108); drawBrushCat(x, R); x.restore();
+  // 검은 고양이
+  x.save(); x.translate(-60, G-316); drawBrushCat(x, R); x.restore();
   // 반짝 선
-  for (const [a,b,c2,d] of [[60,40,52,30],[70,30,70,18],[80,40,88,30]]) brushPts(x, R, jitter(R, [[a,b],[c2,d]], .4), 1.6);
+  for (const [a,b2,c2,d] of [[38,92,30,82],[48,82,48,70],[58,92,66,82]]) brushPts(x, R, jitter(R, [[a,b2],[c2,d]], .4), 1.6);
 }
 
 /* ================= 백업 · 홈 화면 안내 ================= */
@@ -2058,6 +2195,140 @@ function showInstallGuide(force){
 $('#installScrim').onclick = e => { if (e.target.id === 'installScrim') $('#installScrim').classList.remove('on'); };
 setTimeout(() => showInstallGuide(false), 1200);
 
+/* ================= 그림책 영수증 ================= */
+let rcPeriod = 'today';
+function receiptData(){
+  const t = todayStr(), ym = t.slice(0,7), y = t.slice(0,4);
+  const pick = { today: b => b.date === t, month: b => b.date.startsWith(ym), year: b => b.date.startsWith(y), all: () => true }[rcPeriod];
+  const label = { today: fmtDate(t), month: `${+ym.slice(5)}월 한 달`, year: `${y}년`, all: '처음부터 지금까지' }[rcPeriod];
+  const list = books.filter(pick).sort((a,b) => a.date.localeCompare(b.date) || a.createdAt - b.createdAt);
+  return { list, label };
+}
+function renderReceipt(){
+  const { list, label } = receiptData();
+  const now = new Date(), nick = settings.nickname || '그림책 손님';
+  const dates = [...new Set(list.map(b => b.date))];
+  const favs = list.filter(b => days[b.date] && days[b.date].fav === b.id);
+  const ac = {}; list.forEach(b => (b.author || '').split(/[,·]/).map(a => a.trim()).filter(Boolean).forEach(a => ac[a] = (ac[a]||0)+1));
+  const topA = Object.entries(ac).sort((a,b) => b[1]-a[1])[0];
+  const no = `${todayStr().replaceAll('-','')}-${String(list.length).padStart(3,'0')}`;
+  const bars = []; let k = hash(no + nick); for (let i=0;i<44;i++){ k = (k*1103515245 + 12345) >>> 0; bars.push(1 + (k >> 28) % 3); }
+  const rows = list.length ? list.map((b,i) => `<div class="rc-row"><span class="no">${String(i+1).padStart(2,'0')}</span>
+      <span class="it">${days[b.date] && days[b.date].fav === b.id ? '★ ' : ''}${esc(b.title)}${b.author ? `<small>${esc(b.author)}</small>` : ''}</span>
+      <span class="dt">${b.date.slice(5).replace('-','.')}</span></div>`).join('')
+    : `<div class="rc-empty">이 기간에 만난 그림책이 없어요</div>`;
+  $('#receipt').innerHTML = `<div class="zig top"></div>
+    <div class="rc">
+      <div class="rc-shop">시샘책방</div>
+      <div class="rc-sub">어른의 그림책방 · PICTURE BOOK RECEIPT</div>
+      <div class="rc-meta">
+        <span>손님</span><b>${esc(nick)}</b>
+        <span>기간</span><b>${label}</b>
+        <span>발행</span><b>${now.getFullYear()}.${pad(now.getMonth()+1)}.${pad(now.getDate())} ${pad(now.getHours())}:${pad(now.getMinutes())}</b>
+        <span>번호</span><b>No.${no}</b>
+      </div>
+      <div class="rc-line"></div>
+      <div class="rc-row rc-th"><span class="no">NO</span><span class="it">그림책</span><span class="dt">만난 날</span></div>
+      <div class="rc-line thin"></div>
+      ${rows}
+      <div class="rc-line"></div>
+      <div class="rc-sum"><span>함께한 날</span><b>${dates.length}일</b></div>
+      ${favs.length ? `<div class="rc-sum"><span>가장 좋았던 책</span><b>${favs.slice(-3).map(b => `『${esc(b.title)}』`).join('<br>')}</b></div>` : ''}
+      ${topA && topA[1] > 1 ? `<div class="rc-sum"><span>자주 만난 작가</span><b>${esc(topA[0])}</b></div>` : ''}
+      <div class="rc-line"></div>
+      <div class="rc-total"><span>합계</span><b>${list.length}권</b></div>
+      <div class="rc-pay">마음으로 결제 완료 ♡</div>
+      <div class="rc-barcode">${bars.map((w,i) => `<i style="width:${w}px;${i%2 ? 'background:transparent' : ''}"></i>`).join('')}</div>
+      <div class="rc-thanks">THANK YOU FOR READING<br>또 만나요, 시샘책방</div>
+    </div>
+    <div class="zig bottom"></div>`;
+  document.querySelectorAll('#rcChips button').forEach(b => b.classList.toggle('on', b.dataset.p === rcPeriod));
+}
+$('#rcChips').onclick = e => { const b = e.target.closest('button'); if (!b) return; rcPeriod = b.dataset.p; renderReceipt(); };
+$('#rcSave').onclick = async () => {
+  if (!window.html2canvas){ toast('이미지 도구를 불러오지 못했어요. 인터넷 연결을 확인해 주세요'); return; }
+  toast('영수증을 만드는 중…');
+  try{
+    const canvas = await html2canvas($('#receipt'), { scale:2, backgroundColor:null });
+    const png = await new Promise(r => canvas.toBlob(r, 'image/png'));
+    await downloadBlob(png, `그림책영수증_${todayStr()}.png`);
+  }catch(err){ toast('이미지를 만들지 못했어요'); }
+};
+
+/* ================= 시샘책방에 보내기 ================= */
+// ▼ 시샘책방 구글 드라이브로 이미지를 받을 Apps Script 웹 앱 주소를 따옴표 안에 넣으세요.
+const SISAEM_UPLOAD_URL = 'https://script.google.com/macros/s/AKfycbwq2YlmsgMRu7cLoKGOK_kULg9Pfo2yaQ2S960fSBGRB-Fhx1ak9RVWa9aQMN-tGanASA/exec';
+const nextFrame = () => new Promise(r => requestAnimationFrame(() => setTimeout(r, 150)));
+async function capturePanel(panelId, prepare, target, bg){
+  const p = $(panelId), wasOn = p.classList.contains('on');
+  if (!wasOn) p.classList.add('cap');
+  try{
+    prepare(); await nextFrame();
+    const el = typeof target === 'function' ? target() : $(target);
+    if (!el) return null;
+    const shoot = (safe) => html2canvas(el, { scale:2, useCORS:true, backgroundColor:bg,
+      onclone: doc => {
+        doc.querySelectorAll('.panel').forEach(x => { x.style.overflow = 'visible'; });
+        const tc = doc.getElementById('tcard'); if (tc) tc.classList.add('capturing');
+        if (safe) doc.querySelectorAll('img').forEach(img => { if (img.src.startsWith('data:')) return;
+          const d = doc.createElement('div'); d.className = 'nocover';
+          d.style.cssText = `width:${img.offsetWidth}px;height:${img.offsetHeight || 90}px;background:#b98a5c`;
+          d.textContent = img.alt; img.replaceWith(d); });
+      } });
+    let c = await shoot(false);
+    try{ c.toDataURL(); }catch(e){ c = await shoot(true); }
+    return c;
+  } finally { if (!wasOn) p.classList.remove('cap'); }
+}
+function openSendSheet(){
+  const s = $('#setSheet'); $('#setScrim').classList.add('on');
+  const t = todayStr(), n = books.filter(b => b.date === t).length, sent = dayData(t).sentAt;
+  s.innerHTML = `<div class="grip"></div><h2>시샘책방에 보내기</h2>
+    <p class="ig-lead">오늘의 기록 3장을 한 번에 시샘책방 드라이브로 보내요.</p>
+    <ol class="ig-steps"><li>오늘의 그림책 (그림 · 문장)</li><li>오늘의 그림책 영수증</li><li>나만의 그림책장</li></ol>
+    <label class="field"><span>닉네임 (파일 이름과 그림에 들어가요)</span><input id="sendNick" value="${esc(settings.nickname || '')}" placeholder="예) 광혁"></label>
+    <p class="ig-note">보낸 이미지에는 닉네임과 적은 소감이 함께 담기고, 시샘책방이 모임 기록으로 보관해요.${n ? '' : '<br><b>오늘 찍은 책이 아직 없어요.</b>'}${sent ? `<br>오늘 ${new Date(sent).toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'})}에 이미 보냈어요. 다시 보내면 새로 한 번 더 저장돼요.` : ''}</p>
+    <div class="actions"><button class="btn" id="sendCancel">취소</button><button class="btn primary" id="sendGo">보내기</button></div>`;
+  $('#sendCancel').onclick = closeSettings;
+  $('#sendGo').onclick = async () => {
+    const nick = $('#sendNick').value.trim();
+    if (!nick){ toast('닉네임을 적어 주세요'); $('#sendNick').focus(); return; }
+    settings.nickname = nick; save(); closeSettings(); await sendToSisaem();
+  };
+}
+async function sendToSisaem(){
+  if (!SISAEM_UPLOAD_URL){ toast('보낼 곳이 아직 설정되지 않았어요. 시샘책방에 알려 주세요'); return; }
+  if (!window.html2canvas){ toast('이미지 도구를 불러오지 못했어요. 인터넷 연결을 확인해 주세요'); return; }
+  const ov = document.createElement('div'); ov.className = 'sendov';
+  ov.innerHTML = `<div class="sendbox"><div class="spin"></div><b>시샘책방에 보내는 중…</b><span id="sendStep">그림을 만들고 있어요 (1/3)</span></div>`;
+  document.body.appendChild(ov);
+  const step = t => { const e = $('#sendStep'); if (e) e.textContent = t; };
+  const keepDate = tableDate, keepRc = rcPeriod, t = todayStr(), files = [];
+  const jpg = c => c.toDataURL('image/jpeg', .86).split(',')[1];
+  try{
+    tableDate = t;
+    const a = await capturePanel('#p-table', () => renderTable(), '#tcard', '#f4eee1');
+    if (a) files.push({ name:'오늘의그림책', mime:'image/jpeg', data:jpg(a) });
+    step('영수증을 만들고 있어요 (2/3)'); rcPeriod = 'today';
+    const b = await capturePanel('#p-receipt', () => renderReceipt(), '#receipt', '#f4eee1');
+    if (b) files.push({ name:'그림책영수증', mime:'image/jpeg', data:jpg(b) });
+    step('책장을 그리고 있어요 (3/3)');
+    const c = await capturePanel('#p-shelf', () => renderShelf(), () => $('#v-case .bookcase'), '#f4eee1');
+    if (c) files.push({ name:'나만의그림책장', mime:'image/jpeg', data:jpg(c) });
+    step('보내는 중이에요…');
+    const body = JSON.stringify({ key:'sisaem', date:t, nick:settings.nickname || '손님', files });
+    let ok = false;
+    try{ const r = await fetch(SISAEM_UPLOAD_URL, { method:'POST', body }); const j = await r.json(); ok = !!j.ok; }
+    catch(e){ await fetch(SISAEM_UPLOAD_URL, { method:'POST', body, mode:'no-cors' }); ok = true; } // 응답을 못 읽어도 전송은 됨
+    if (!ok) throw new Error('fail');
+    dayData(t).sentAt = Date.now(); save(); renderScan();
+    toast(`시샘책방에 ${files.length}장을 보냈어요 ♡`);
+  }catch(err){ toast('보내지 못했어요. 와이파이 연결을 확인하고 다시 눌러 주세요'); }
+  finally { tableDate = keepDate; rcPeriod = keepRc; ov.remove(); renderTable(); renderReceipt(); renderShelf(); }
+}
+$('#sendBtn').onclick = openSendSheet;
+$('#backupBtn').onclick = openSettings;
+
 /* ================= tabs ================= */
 function goTab(name){
   document.querySelectorAll('.tabbar button').forEach(b => b.classList.toggle('on', b.dataset.tab === name));
@@ -2066,10 +2337,10 @@ function goTab(name){
   if (name === 'table'){ tableDate = $('#tDate').value && tableDate !== todayStr() ? tableDate : todayStr(); renderTable(); }
   if (name === 'shelf') renderShelf();
   if (name === 'scan') drawScanArt();
-  if (name === 'diary') renderDiary();
+  if (name === 'receipt') renderReceipt();
 }
 document.querySelectorAll('.tabbar button').forEach(b => b.onclick = () => goTab(b.dataset.tab));
-function refreshAll(){ renderScan(); renderShelf(); renderTable(); renderDiary(); }
+function refreshAll(){ renderScan(); renderShelf(); renderTable(); renderDiary(); renderReceipt(); }
 document.addEventListener('visibilitychange', () => { if (document.hidden) stopScan(); else refreshAll(); });
 refreshAll();
 </script>
